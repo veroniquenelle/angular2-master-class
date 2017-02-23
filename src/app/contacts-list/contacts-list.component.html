@@ -1,0 +1,20 @@
+<md-toolbar>
+  <md-input-container dividerColor="accent" class="trm-search-container">
+    <input md-input type="text" (input)="terms$.next($event.target.value)">
+  </md-input-container>
+  <md-icon color="accent">search</md-icon>
+</md-toolbar>
+
+<md-nav-list>
+  <a md-list-item *ngFor="let contact of contacts | async; trackBy:trackByContactId"
+     [routerLink]="['/contact', contact.id]"
+     title = "View details of {{contact.name}}">
+
+    <img md-list-avatar [src]="contact.image" alt="Picture of {{contact.name}}">
+    <h3 md-line>{{contact.name}}</h3>
+  </a>
+</md-nav-list>
+
+<a md-fab title="Add a new contact" [routerLink]="['/contact/new']" class="trm-floating-button">
+  <md-icon class="md-24">add</md-icon>
+</a>
